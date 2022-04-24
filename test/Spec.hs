@@ -16,7 +16,7 @@ aggregationTest = TestList
   ]
 
 averageTest = TestList
-  [ "average test 1" ~: average [1, 2, 3] ~?= Just 2
+  [ "average test 1" ~: average [1, 2, 3] ~?= Just 2.0
   , "average test 2" ~: average []        ~?= Nothing
   ]
 

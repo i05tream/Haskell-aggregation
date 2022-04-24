@@ -3,6 +3,7 @@ where
 
 import Data.List (sort)
 import Data.Char (isDigit)
+import Data.Maybe (fromMaybe)
 import System.IO (openFile, IOMode(ReadMode), hClose, hGetContents)
 import Control.Exception (bracket)
 import Control.Monad (forM_)
@@ -11,14 +12,16 @@ aggregate :: IO ()
 aggregate = do
   bracket (openFile "assets/nums" ReadMode) hClose $ \h -> do
     cs <- hGetContents h
-    let ns = map read . filter isNumber . lines $ cs
+    let ns  = map read . filter isNumber . lines $ cs
+        avg = fromMaybe 0 $ average ns
+        med = fromMaybe 0 $ median ns
     case ns of
       [] -> putStrLn "No number in assets/nums"
       _  -> sequence_
         [ putStrLn $ "max: " ++ show (maximum ns)
         , putStrLn $ "min: " ++ show (minimum ns)
-        , putStrLn $ "avg: " ++ show (average ns)
-        , putStrLn $ "max: " ++ show (maximum ns)
+        , putStrLn $ "avg: " ++ show avg
+        , putStrLn $ "med: " ++ show med
         ]
     return ()
 
@@ -29,11 +32,14 @@ isNumber "0"       = True
 isNumber ('0' : _) = False
 isNumber cs        = all isDigit cs
 
-average :: [Int] -> Maybe Int
+average :: Integral a => [a] -> Maybe Double
 average [] = Nothing
-average xs = Just $ sum xs `div` (length xs)
+average xs = 
+  let x   = fromIntegral . sum $ xs
+      len = fromIntegral . length $ xs
+  in Just $ x / len
 
-median :: (Integral a) => [a] -> Maybe Double
+median :: Integral a => [a] -> Maybe Double
 median [] = Nothing
 median xs =
   let xs' = sort . unique $ xs
