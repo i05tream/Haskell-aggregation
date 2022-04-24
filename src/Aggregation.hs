@@ -1,17 +1,16 @@
 module Aggregation
 where
 
-import           Control.Exception (bracket)
-import           Control.Monad     (forM_)
-import           Data.Char         (isDigit)
-import           Data.List         (sort)
-import           Data.Maybe        (fromMaybe)
-import           System.IO         (IOMode (ReadMode), hClose, hGetContents,
-                                    openFile)
+import           Control.Monad (forM_)
+import           Data.Char     (isDigit)
+import           Data.List     (sort)
+import           Data.Maybe    (fromMaybe)
+import           System.IO     (IOMode (ReadMode), hClose, hGetContents,
+                                withFile)
 
 aggregate :: IO ()
 aggregate = do
-  bracket (openFile "assets/nums" ReadMode) hClose $ \h -> do
+  withFile "assets/nums" ReadMode $ \h -> do
     cs <- hGetContents h
     let ns  = map read . filter isNumber . lines $ cs
         avg = fromMaybe 0 $ average ns
