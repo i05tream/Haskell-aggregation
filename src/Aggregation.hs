@@ -5,12 +5,23 @@ import Data.List (sort)
 import Data.Char (isDigit)
 import System.IO (openFile, IOMode(ReadMode), hClose, hGetContents)
 import Control.Exception (bracket)
+import Control.Monad (forM_)
 
 aggregate :: IO ()
 aggregate = do
-  bracket (openFile "./assets/nums" ReadMode) hClose $ \h -> do
-    s <- hGetContents h
-    undefined
+  bracket (openFile "assets/nums" ReadMode) hClose $ \h -> do
+    cs <- hGetContents h
+    let ns = map read . filter isNumber . lines $ cs
+    case ns of
+      [] -> putStrLn "No number in assets/nums"
+      _  -> sequence_
+        [ putStrLn $ "max: " ++ show (maximum ns)
+        , putStrLn $ "min: " ++ show (minimum ns)
+        , putStrLn $ "avg: " ++ show (average ns)
+        , putStrLn $ "max: " ++ show (maximum ns)
+        ]
+    return ()
+
 
 isNumber :: String -> Bool
 isNumber ""        = False

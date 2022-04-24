@@ -1,6 +1,8 @@
 module Main where
 
-import Lib
+import Aggregation
 
 main :: IO ()
-main = undefined
+main = do
+  aggregate
+  return ()
