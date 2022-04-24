@@ -1,14 +1,12 @@
-main :: IO ()
-main = putStrLn "Test suite not yet implemented"
 import Test.HUnit
 import Lib
 
 
 main :: IO ()
 main = do
-  runTestTT $ TestList [
-    
-  ]
+  runTestTT $ TestList
+    [ aggregationTest ]
+  return ()
 
 aggregationTest = TestList
   [ "average test 1" ~: average [1, 2, 3] ~?= Just 2.0
