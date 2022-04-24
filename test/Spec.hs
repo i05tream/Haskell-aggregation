@@ -11,6 +11,7 @@ main = do
 aggregationTest = TestList
   [ averageTest
   , medianTest
+  , uniqueTest
   ]
 
 averageTest = TestList
@@ -23,4 +24,9 @@ medianTest = TestList
   , "median test 2" ~: median [1, 2, 3, 4, 5]    ~?= Just 3.0
   , "median test 3" ~: median [1, 2, 3, 4, 5, 6] ~?= Just 3.5
   , "median test 4" ~: median [1, 1, 1, 2, 3]    ~?= Just 2.0
+  ]
+
+uniqueTest = TestList
+  [ "unique test 1" ~: unique [] ~?= []
+  , "unique test 2" ~: unique [1, 2, 1, 1, 2] ~?= [1, 2]
   ]
