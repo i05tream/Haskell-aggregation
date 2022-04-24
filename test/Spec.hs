@@ -19,6 +19,7 @@ averageTest = TestList
   ]
 
 medianTest = TestList
-  [ "median test 1" ~: median [] ~?= Nothing
-  , "median test 2" ~: median [1, 2, 3, 3, 2, 1, 2, 2, 4] ~?= 2
+  [ "median test 1" ~: median []                 ~?= Nothing
+  , "median test 2" ~: median [1, 2, 3, 4, 5]    ~?= Just 3
+  , "median test 3" ~: median [1, 2, 3, 4, 5, 6] ~?= Just 3.5
   ]
