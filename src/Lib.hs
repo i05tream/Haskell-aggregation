@@ -19,3 +19,6 @@ median xs =
         let median1 = xs !! (len `div` 2 - 1)
             median2 = xs !! (len `div` 2)
         in fromIntegral (median1 + median2) / 2
+
+unique :: Eq a => [a] -> [a]
+unique = foldr (\x l -> if x `elem` l then l else x : l) []
