@@ -1,5 +1,5 @@
 import Test.HUnit
-import Lib
+import Aggregation
 
 
 main :: IO ()
@@ -9,7 +9,8 @@ main = do
   return ()
 
 aggregationTest = TestList
-  [ averageTest
+  [ isNumberTest
+  , averageTest
   , medianTest
   , uniqueTest
   ]
@@ -29,4 +30,9 @@ medianTest = TestList
 uniqueTest = TestList
   [ "unique test 1" ~: unique [] ~?= ([] :: [Int])
   , "unique test 2" ~: unique [1, 2, 1, 1, 2] ~?= ([1, 2] :: [Int])
+  ]
+
+isNumberTest = TestList
+  [ "isNumber test 1" ~: isNumber "123" ~?= True
+  , "isNumber test 1" ~: isNumber "1a"  ~?= False
   ]
