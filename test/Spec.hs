@@ -34,5 +34,6 @@ uniqueTest = TestList
 
 isNumberTest = TestList
   [ "isNumber test 1" ~: isNumber "123" ~?= True
-  , "isNumber test 1" ~: isNumber "1a"  ~?= False
+  , "isNumber test 2" ~: isNumber "0"   ~?= True
+  , "isNumber test 3" ~: isNumber "1a"  ~?= False
   ]
