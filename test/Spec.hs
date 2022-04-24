@@ -10,12 +10,13 @@ main = do
 
 aggregationTest = TestList
   [ averageTest
-  , 
+  , medianTest
   ]
 
 averageTest = TestList
   [ "average test 1" ~: average [1, 2, 3] ~?= Just 2
-  , "average test 2" ~: average []        ~?= Nothing]
+  , "average test 2" ~: average []        ~?= Nothing
+  ]
 
 medianTest = TestList
   [ "median test 1" ~: median [] ~?= Nothing ]
