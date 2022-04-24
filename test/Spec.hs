@@ -27,6 +27,6 @@ medianTest = TestList
   ]
 
 uniqueTest = TestList
-  [ "unique test 1" ~: unique [] ~?= []
-  , "unique test 2" ~: unique [1, 2, 1, 1, 2] ~?= [1, 2]
+  [ "unique test 1" ~: unique [] ~?= ([] :: [Int])
+  , "unique test 2" ~: unique [1, 2, 1, 1, 2] ~?= ([1, 2] :: [Int])
   ]
