@@ -9,6 +9,13 @@ main = do
   return ()
 
 aggregationTest = TestList
-  [ "average test 1" ~: average [1, 2, 3] ~?= Just 2.0
-  , "average test 2" ~: average []        ~?= Nothing
+  [ averageTest
+  , 
   ]
+
+averageTest = TestList
+  [ "average test 1" ~: average [1, 2, 3] ~?= Just 2
+  , "average test 2" ~: average []        ~?= Nothing]
+
+medianTest = TestList
+  [ "median test 1" ~: median [] ~?= Nothing ]
