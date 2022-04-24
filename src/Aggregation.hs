@@ -14,6 +14,7 @@ aggregate = do
 
 isNumber :: String -> Bool
 isNumber ""        = False
+isNumber "0"       = True
 isNumber ('0' : _) = False
 isNumber cs        = all isDigit cs
 
