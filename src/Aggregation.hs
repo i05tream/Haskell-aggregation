@@ -1,12 +1,13 @@
 module Aggregation
 where
 
-import Data.List (sort)
-import Data.Char (isDigit)
-import Data.Maybe (fromMaybe)
-import System.IO (openFile, IOMode(ReadMode), hClose, hGetContents)
-import Control.Exception (bracket)
-import Control.Monad (forM_)
+import           Control.Exception (bracket)
+import           Control.Monad     (forM_)
+import           Data.Char         (isDigit)
+import           Data.List         (sort)
+import           Data.Maybe        (fromMaybe)
+import           System.IO         (IOMode (ReadMode), hClose, hGetContents,
+                                    openFile)
 
 aggregate :: IO ()
 aggregate = do
@@ -34,7 +35,7 @@ isNumber cs        = all isDigit cs
 
 average :: Integral a => [a] -> Maybe Double
 average [] = Nothing
-average xs = 
+average xs =
   let x   = fromIntegral . sum $ xs
       len = fromIntegral . length $ xs
   in Just $ x / len

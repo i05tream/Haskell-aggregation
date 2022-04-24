@@ -1,5 +1,5 @@
-import Test.HUnit
-import Aggregation
+import           Aggregation
+import           Test.HUnit
 
 
 main :: IO ()
